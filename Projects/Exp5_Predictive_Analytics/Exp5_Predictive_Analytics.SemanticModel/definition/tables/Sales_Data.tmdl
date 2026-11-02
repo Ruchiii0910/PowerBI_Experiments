@@ -1,0 +1,77 @@
+table Sales_Data
+	lineageTag: 1777e8cb-7468-5b98-d2fe-2fded918b3e5
+
+	column Month
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: a3b5cece-a446-be72-364c-911aa9ab364a
+		summarizeBy: none
+		sourceColumn: Month
+
+	column Marketing_Spend
+		dataType: double
+		lineageTag: 0cf2b69b-0577-aea9-f899-924698de8ebb
+		summarizeBy: sum
+		sourceColumn: Marketing_Spend
+
+	column Customers
+		dataType: int64
+		lineageTag: fd235def-3e5a-87e3-5560-db22c96b5edb
+		summarizeBy: sum
+		sourceColumn: Customers
+
+	column Sales
+		dataType: double
+		lineageTag: 34885a46-9088-2eaf-c977-6598203c8c25
+		summarizeBy: sum
+		sourceColumn: Sales
+
+	partition Sales_Data = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [Month = date, Marketing_Spend = number, Customers = Int64.Type, Sales = number],
+				        {
+				            {#date(2023,1,1), 56713.0, 848, 127670.0},
+				            {#date(2023,2,1), 68365.0, 946, 151074.0},
+				            {#date(2023,3,1), 73343.0, 1032, 155167.0},
+				            {#date(2023,4,1), 69895.0, 1016, 147892.0},
+				            {#date(2023,5,1), 71274.0, 973, 150233.0},
+				            {#date(2023,6,1), 68242.0, 929, 136080.0},
+				            {#date(2023,7,1), 73340.0, 1002, 142923.0},
+				            {#date(2023,8,1), 67952.0, 948, 146371.0},
+				            {#date(2023,9,1), 67336.0, 957, 139636.0},
+				            {#date(2023,10,1), 61421.0, 891, 124169.0},
+				            {#date(2023,11,1), 64715.0, 923, 129753.0},
+				            {#date(2023,12,1), 69540.0, 997, 137872.0},
+				            {#date(2024,1,1), 75303.0, 1022, 156694.0},
+				            {#date(2024,2,1), 82834.0, 1053, 156562.0},
+				            {#date(2024,3,1), 83212.0, 1119, 156734.0},
+				            {#date(2024,4,1), 86432.0, 1150, 174621.0},
+				            {#date(2024,5,1), 96753.0, 1188, 187401.0},
+				            {#date(2024,6,1), 93765.0, 1122, 185480.0},
+				            {#date(2024,7,1), 83291.0, 1082, 158673.0},
+				            {#date(2024,8,1), 87404.0, 1124, 169828.0},
+				            {#date(2024,9,1), 86100.0, 1128, 175364.0},
+				            {#date(2024,10,1), 85292.0, 1150, 168126.0},
+				            {#date(2024,11,1), 86305.0, 1147, 182802.0},
+				            {#date(2024,12,1), 85106.0, 1101, 178364.0},
+				            {#date(2025,1,1), 93170.0, 1181, 182957.0},
+				            {#date(2025,2,1), 107730.0, 1304, 206364.0},
+				            {#date(2025,3,1), 105536.0, 1281, 199835.0},
+				            {#date(2025,4,1), 111016.0, 1397, 208082.0},
+				            {#date(2025,5,1), 111011.0, 1306, 214392.0},
+				            {#date(2025,6,1), 111849.0, 1351, 222562.0},
+				            {#date(2025,7,1), 111136.0, 1354, 201083.0},
+				            {#date(2025,8,1), 96293.0, 1211, 196135.0},
+				            {#date(2025,9,1), 94145.0, 1163, 184527.0},
+				            {#date(2025,10,1), 91346.0, 1168, 188023.0},
+				            {#date(2025,11,1), 102645.0, 1279, 201206.0},
+				            {#date(2025,12,1), 106157.0, 1247, 204627.0}
+				        }
+				    )
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

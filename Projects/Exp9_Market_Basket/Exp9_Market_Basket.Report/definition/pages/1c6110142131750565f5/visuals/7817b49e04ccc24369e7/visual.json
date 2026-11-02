@@ -1,0 +1,98 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "7817b49e04ccc24369e7",
+  "position": {
+    "x": 0,
+    "y": 390,
+    "z": 2000,
+    "height": 320,
+    "width": 1280,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Market_Basket_Data"
+                    }
+                  },
+                  "Property": "ProductName"
+                }
+              },
+              "queryRef": "Market_Basket_Data.ProductName",
+              "nativeQueryRef": "ProductName",
+              "active": true
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Product_B"
+                    }
+                  },
+                  "Property": "ProductB_Name"
+                }
+              },
+              "queryRef": "Product_B.ProductB_Name",
+              "nativeQueryRef": "ProductB_Name",
+              "active": true
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Market_Basket_Data"
+                    }
+                  },
+                  "Property": "Orders_Both_A_and_B"
+                }
+              },
+              "queryRef": "Market_Basket_Data.Orders_Both_A_and_B",
+              "nativeQueryRef": "Orders_Both_A_and_B"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Orders containing both A and B'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

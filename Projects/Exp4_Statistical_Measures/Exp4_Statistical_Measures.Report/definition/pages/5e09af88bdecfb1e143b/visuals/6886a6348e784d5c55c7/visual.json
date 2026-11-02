@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "6886a6348e784d5c55c7",
+  "position": {
+    "x": 0,
+    "y": 520,
+    "z": 5000,
+    "height": 185,
+    "width": 270,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales_Discount"
+                    }
+                  },
+                  "Property": "Max_Sales"
+                }
+              },
+              "queryRef": "Sales_Discount.Max_Sales",
+              "nativeQueryRef": "Max_Sales"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

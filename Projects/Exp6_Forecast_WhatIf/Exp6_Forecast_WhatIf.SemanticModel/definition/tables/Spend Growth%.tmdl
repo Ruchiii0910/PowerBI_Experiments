@@ -1,0 +1,18 @@
+table 'Spend Growth%'
+	lineageTag: 6bc4123e-bde1-3c1b-2073-3f6d0d6a05b3
+
+	measure 'Spend Growth% Value' = SELECTEDVALUE('Spend Growth%'[Spend Growth%], 0) / 100
+		formatString: 0%
+		lineageTag: 104556e5-bee3-eb79-1d18-1ee986ad8a8c
+
+	column 'Spend Growth%'
+		dataType: int64
+		lineageTag: 5cae9610-c72c-1fe3-72c2-2a1679eb4168
+		summarizeBy: none
+		sourceColumn: [Spend Growth%]
+
+	partition 'Spend Growth%' = calculated
+		mode: import
+		source = SELECTCOLUMNS(GENERATESERIES(-20, 50, 5), "Spend Growth%", [Value])
+
+	annotation PBI_ResultType = Table

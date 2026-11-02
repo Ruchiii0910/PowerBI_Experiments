@@ -1,0 +1,125 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "6a7e66132e6974188109",
+  "position": {
+    "x": 780,
+    "y": 90,
+    "z": 3000,
+    "height": 620,
+    "width": 500,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerRFM"
+                    }
+                  },
+                  "Property": "CustomerID"
+                }
+              },
+              "queryRef": "CustomerRFM.CustomerID",
+              "nativeQueryRef": "CustomerID",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "CustomerRFM"
+                    }
+                  },
+                  "Property": "Customer_Segment"
+                }
+              },
+              "queryRef": "CustomerRFM.Customer_Segment",
+              "nativeQueryRef": "Customer_Segment"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "CustomerRFM"
+                        }
+                      },
+                      "Property": "Recency"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(CustomerRFM.Recency)",
+              "nativeQueryRef": "Sum of Recency"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "CustomerRFM"
+                        }
+                      },
+                      "Property": "Monetary"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(CustomerRFM.Monetary)",
+              "nativeQueryRef": "Sum of Monetary"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Recency vs Monetary'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

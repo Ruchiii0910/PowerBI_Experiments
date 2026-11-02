@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "d2e8a2a9d4d8102efde5",
+  "position": {
+    "x": 0,
+    "y": 325,
+    "z": 3000,
+    "height": 185,
+    "width": 270,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales_Discount"
+                    }
+                  },
+                  "Property": "Min_Sales"
+                }
+              },
+              "queryRef": "Sales_Discount.Min_Sales",
+              "nativeQueryRef": "Min_Sales"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

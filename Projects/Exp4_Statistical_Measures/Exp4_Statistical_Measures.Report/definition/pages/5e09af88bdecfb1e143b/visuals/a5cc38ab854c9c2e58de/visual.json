@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a5cc38ab854c9c2e58de",
+  "position": {
+    "x": 280,
+    "y": 130,
+    "z": 2000,
+    "height": 185,
+    "width": 270,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Sales_Discount"
+                    }
+                  },
+                  "Property": "Median_Sales"
+                }
+              },
+              "queryRef": "Sales_Discount.Median_Sales",
+              "nativeQueryRef": "Median_Sales"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

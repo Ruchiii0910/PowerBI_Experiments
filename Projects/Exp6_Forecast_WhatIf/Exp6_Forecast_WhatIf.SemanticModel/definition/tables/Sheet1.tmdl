@@ -1,0 +1,88 @@
+table Sheet1
+	lineageTag: fcce96f6-250a-4578-fbe9-4499dbc080fd
+
+	measure Total_Revenue = SUM(Sheet1[Revenue])
+		formatString: #,0
+		lineageTag: cc6b66e5-402a-df9c-8a4b-8f7c21472a15
+
+	measure Predicted_Future_Sales =
+			VAR n = COUNTROWS(Sheet1)
+			VAR sx = SUM(Sheet1[Marketing_Spend])
+			VAR sy = SUM(Sheet1[Revenue])
+			VAR sxy = SUMX(Sheet1, Sheet1[Marketing_Spend] * Sheet1[Revenue])
+			VAR sxx = SUMX(Sheet1, Sheet1[Marketing_Spend] ^ 2)
+			VAR slope = DIVIDE(n * sxy - sx * sy, n * sxx - sx ^ 2)
+			VAR intercept = DIVIDE(sy - slope * sx, n)
+			VAR avgSpend = DIVIDE(sx, n)
+			RETURN intercept + slope * avgSpend * (1 + [Spend Growth% Value])
+		formatString: #,0
+		lineageTag: ddcf8766-a93b-12cd-1c24-220e2cabd7e7
+
+	column Date
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 5bb5c40c-03cd-e2e3-21bd-db4106998731
+		summarizeBy: none
+		sourceColumn: Date
+
+	column Marketing_Spend
+		dataType: double
+		lineageTag: 96bf10ab-3ce9-15e7-c9d6-a63bca3c6f5f
+		summarizeBy: sum
+		sourceColumn: Marketing_Spend
+
+	column Revenue
+		dataType: double
+		lineageTag: 43ef2016-2c9b-662e-040a-3aae52e2afd9
+		summarizeBy: sum
+		sourceColumn: Revenue
+
+	partition Sheet1 = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [Date = date, Marketing_Spend = number, Revenue = number],
+				        {
+				            {#date(2023,1,1), 52874.0, 163900.0},
+				            {#date(2023,2,1), 50043.0, 148192.0},
+				            {#date(2023,3,1), 53921.0, 172907.0},
+				            {#date(2023,4,1), 53426.0, 172485.0},
+				            {#date(2023,5,1), 52713.0, 169038.0},
+				            {#date(2023,6,1), 45929.0, 160928.0},
+				            {#date(2023,7,1), 47518.0, 159922.0},
+				            {#date(2023,8,1), 43976.0, 157129.0},
+				            {#date(2023,9,1), 52130.0, 184729.0},
+				            {#date(2023,10,1), 56398.0, 212897.0},
+				            {#date(2023,11,1), 57115.0, 193999.0},
+				            {#date(2023,12,1), 64070.0, 226620.0},
+				            {#date(2024,1,1), 64656.0, 221052.0},
+				            {#date(2024,2,1), 76255.0, 255551.0},
+				            {#date(2024,3,1), 75525.0, 251667.0},
+				            {#date(2024,4,1), 75531.0, 255202.0},
+				            {#date(2024,5,1), 64483.0, 222505.0},
+				            {#date(2024,6,1), 61213.0, 225793.0},
+				            {#date(2024,7,1), 61827.0, 213580.0},
+				            {#date(2024,8,1), 55483.0, 190347.0},
+				            {#date(2024,9,1), 64771.0, 226519.0},
+				            {#date(2024,10,1), 67801.0, 235587.0},
+				            {#date(2024,11,1), 72887.0, 252238.0},
+				            {#date(2024,12,1), 75618.0, 264957.0},
+				            {#date(2025,1,1), 93683.0, 313500.0},
+				            {#date(2025,2,1), 94181.0, 319809.0},
+				            {#date(2025,3,1), 95814.0, 322493.0},
+				            {#date(2025,4,1), 83579.0, 298213.0},
+				            {#date(2025,5,1), 86500.0, 325571.0},
+				            {#date(2025,6,1), 74485.0, 273892.0},
+				            {#date(2025,7,1), 79851.0, 284142.0},
+				            {#date(2025,8,1), 75424.0, 256758.0},
+				            {#date(2025,9,1), 77131.0, 301092.0},
+				            {#date(2025,10,1), 82165.0, 301900.0},
+				            {#date(2025,11,1), 86559.0, 311890.0},
+				            {#date(2025,12,1), 104115.0, 343541.0}
+				        }
+				    )
+				in
+				    Source
+
+	annotation PBI_ResultType = Table

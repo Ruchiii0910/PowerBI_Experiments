@@ -1,0 +1,15 @@
+table DateTable
+	lineageTag: 8ddce719-81f3-8dd4-fd03-4adac9525185
+
+	column Date
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 785ac5d0-df92-a621-63f4-c69d0534a101
+		summarizeBy: none
+		sourceColumn: [Date]
+
+	partition DateTable = calculated
+		mode: import
+		source = CALENDAR(MIN(sales1[Date]), MAX(sales1[Date]))
+
+	annotation PBI_ResultType = Table

@@ -1,0 +1,30 @@
+table Product_B
+	lineageTag: 3d0a5f0c-0c39-4ec7-1f31-74054d183eba
+
+	column ProductB_Name
+		dataType: string
+		lineageTag: 9f708368-cb3c-f8ca-a392-57316b79afcc
+		summarizeBy: none
+		sourceColumn: ProductB_Name
+
+	partition Product_B = m
+		mode: import
+		source =
+				let
+				    Source = #table(
+				        type table [ProductB_Name = text],
+				        {
+				            {"Coffee"},
+				            {"Croissant"},
+				            {"Muffin"},
+				            {"Sandwich"},
+				            {"Cookie"},
+				            {"Tea"},
+				            {"Juice"},
+				            {"Bagel"}
+				        }
+				    )
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
