@@ -1,4 +1,4 @@
-# Power BI Experiments - new datasets (same experiments as Pragati251000/PEC)
+# Power BI Experiments 
 
 Each experiment has an Excel dataset (`Datasets/`) and a Power BI project (`Projects/ExpN_.../ExpN_....pbip`).
 
